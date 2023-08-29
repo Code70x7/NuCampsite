@@ -1,4 +1,5 @@
-console.log("hey this is fun");
+console.log("this is fun");
+
 async function fetchWeather() {
   const apiKey = process.env.OPEN_WEATHER_API_KEY;
   const city = "Rexburg";
@@ -16,7 +17,6 @@ async function fetchWeather() {
   }
 }
 fetchWeather();
-
 const carousel = new bootstrap.Carousel("#homeCarousel", {
   interval: 2000,
   pause: false,
