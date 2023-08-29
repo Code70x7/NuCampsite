@@ -1,3 +1,4 @@
+console.log("hey this is fun");
 async function fetchWeather() {
   const apiKey = process.env.OPEN_WEATHER_API_KEY;
   const city = "Rexburg";
