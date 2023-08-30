@@ -1,12 +1,11 @@
-console.log("super fun");
-function displayWeather(weatherData) {}
-
 async function fetchWeather() {
   const apiKey = process.env.OPEN_WEATHER_API_KEY;
   const city = "Rexburg";
   const lat = 43.825386;
   const lon = -111.472288;
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={apiKey}`;
+
+  // `https://api.openweathermap.org/data/2.5/weather?q=${city}&lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
   try {
     const response = await fetch(url);
@@ -18,9 +17,31 @@ async function fetchWeather() {
     console.error("There was an error!", error);
   }
 }
-fetchWeather();
 
-console.log("this is fun");
+console.log("super fun");
+
+function displayWeather(data) {
+  if (data.main && data.main.temp) {
+    const temperature = data.main.temp;
+    const description = data.weather[0].description;
+    const icon = data.weather[0].icon;
+
+    const temperatureElement = document.getElementById("temperature");
+    const descriptionElement = document.getElementById("description");
+    const weatherIconElement = document.getElementById("weatherIcon");
+
+    temperatureElement.textContent = `${temperature} °F`;
+    descriptionElement.textContent = description;
+
+    const imgIcon = document.createElement("img");
+    imgIcon.src = `https://openweathermap.org/img/w/${icon}.png`;
+    weatherIconElement.appendChild(imgIcon);
+  } else {
+    console.error("Weather data is missing or invalid.");
+  }
+}
+
+fetchWeather();
 
 const carousel = new bootstrap.Carousel("#homeCarousel", {
   interval: 2000,
