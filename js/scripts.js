@@ -1,4 +1,5 @@
-console.log("this is fun");
+console.log("super fun");
+function displayWeather(weatherData) {}
 
 async function fetchWeather() {
   const apiKey = process.env.OPEN_WEATHER_API_KEY;
@@ -12,11 +13,15 @@ async function fetchWeather() {
     const data = await response.json();
 
     console.log(data);
+    displayWeather(data);
   } catch (error) {
     console.error("There was an error!", error);
   }
 }
 fetchWeather();
+
+console.log("this is fun");
+
 const carousel = new bootstrap.Carousel("#homeCarousel", {
   interval: 2000,
   pause: false,
